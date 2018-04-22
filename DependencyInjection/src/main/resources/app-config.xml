@@ -21,9 +21,16 @@
 		</property>
 		<property name="brandAvailability">
 			<map>
-				<entry key="Honda" value="true"/>
-				<entry key="BMW" value="true"/>
+				<entry key="Honda" value="true" />
+				<entry key="BMW" value="true" />
 			</map>
 		</property>
 	</bean>
-</beans> 
+
+	<bean id="constructorDependency" class="com.example.service.ConstructorDependencyInjection">
+		<constructor-arg ref="productBean" />
+	</bean>
+	<bean id="setterDependency" class="com.example.service.SetterDependencyInjection">
+		<property name="product" ref="productBean" />
+	</bean>
+</beans>
