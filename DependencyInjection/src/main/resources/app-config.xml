@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean id="productBean" class="com.example.models.Product"
+		init-method="initIt" destroy-method="cleanUp">
+		<!-- <property name="productName"> <value>productABC</value> </property> 
+			<property name="price"> <value>123</value> </property> -->
+		<constructor-arg type="java.lang.String" value="productABC"></constructor-arg>
+		<constructor-arg type="int" value="1000"></constructor-arg>
+		<property name="availableBrands">
+			<list>
+				<value>Honda</value>
+				<value>BMW</value>
+			</list>
+		</property>
+		<property name="brandAvailability">
+			<map>
+				<entry key="Honda" value="true"/>
+				<entry key="BMW" value="true"/>
+			</map>
+		</property>
+	</bean>
+</beans> 
