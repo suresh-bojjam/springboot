@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <context:annotation-config /> -->
+<!-- https://howtodoinjava.com/spring/spring-core/spring-beans-autowiring-concepts/ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Spring Auto Wiring – Constructor mode of auto wiring calls large number 
+		of parameters. Spring Auto Wiring – byName and byType modes internally use 
+		setter methods. -->
+
+	<bean id="productBeanByConstructor" class="com.example.models.Product"
+		autowire="constructor">
+		<property name="productName">
+			<value>productABC</value>
+		</property>
+		<property name="price">
+			<value>250</value>
+		</property>
+	</bean>
+
+	<bean id="productBean" class="com.example.models.Product2"
+		autowire="byName">
+		<property name="productName">
+			<value>productABC</value>
+		</property>
+		<property name="price">
+			<value>250</value>
+		</property>
+	</bean>
+
+	<bean id="productType" class="com.example.models.Product3"
+		autowire="byType">
+		<property name="productName">
+			<value>productABC</value>
+		</property>
+		<property name="price">
+			<value>250</value>
+		</property>
+	</bean>
+
+
+	<bean id="byType" class="com.example.service.ByType">
+		<property name="product" ref="productType" />
+	</bean>
+	<bean id="byName" class="com.example.service.ByName">
+		<property name="product" ref="productBean" />
+	</bean>
+	<bean id="byConstructor" class="com.example.service.ByConstructor">
+		<property name="product" ref="productBeanByConstructor" />
+	</bean>
+</beans>
